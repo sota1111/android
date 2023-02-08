@@ -13,7 +13,9 @@
         <item>麻婆豆腐定食</item>
         <item>青椒肉絲定食</item>
         <item>焼き魚定食</item>
-        <item>定食</item>
-
+        <item>すきやき定食</item>
+        <item>お茶漬け定食</item>
+        <item>カレー定食</item>
+        <item>豚汁定食</item>
     </string-array>
 </resources>
