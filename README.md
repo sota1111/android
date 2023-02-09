@@ -50,3 +50,12 @@ OnItemClickListener：リストビューのタップというイベントに対�
 # 5.3 ダイアログを表示する
 let関数ブロック内では、nullチェック対象の変数はitに置き換わる。
 関数ブロック内の末尾で記述した変数が関数の戻り値になる
+
+# 6 ConstraintLayout
+## 6.1 ConstraintLayout
+配置に制約を持たせる
+## 6.2 制約の設定には制約ハンドルを使う
+## 6.3 ConstraintLayoutにおける3種類のlayout_width/height
+## 6.4 横並びとベースライン
+## 6.5 ガイドラインを利用する
+## 6.6 チェイン機能を使ってみる
