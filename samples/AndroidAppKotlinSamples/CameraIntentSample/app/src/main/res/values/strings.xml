@@ -1,0 +1,12 @@
+<!--
+『Androidアプリ開発の教科書Kotlin』
+第15章
+カメラアプリ連携サンプル
+
+@author Shinzo SAITO
+
+res/values/string.xmlファイル
+-->
+<resources>
+	<string name="app_name">カメラ連携サンプル</string>
+</resources>
