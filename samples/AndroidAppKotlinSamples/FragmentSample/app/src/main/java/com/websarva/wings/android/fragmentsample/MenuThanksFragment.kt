@@ -8,31 +8,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 
-/**
- * 『Androidアプリ開発の教科書Kotlin』
- * 第9章
- * フラグメントサンプル
- *
- * 注文完了のフラグメントクラス。
- *
- * @author Shinzo SAITO
- */
 class MenuThanksFragment : Fragment() {
-	/**
-	 * 大画面かどうかの判定フラグ。
-	 * trueが大画面、falseが通常画面。
-	 * 判定ロジックは同一画面にリストフラグメントが存在するかで行う。
-	 */
 	private var _isLayoutXLarge = true
 
 	override fun onCreate(savedInstanceState: Bundle?) {
-		// 親クラスのonCreate()の呼び出し。
 		super.onCreate(savedInstanceState)
-		// フラグメントマネージャーからメニューリストフラグメントを取得。
 		val menuListFragment = fragmentManager?.findFragmentById(R.id.fragmentMenuList)
-		// メニューリストフラグメントがnull、つまり存在しないなら…
 		if(menuListFragment == null) {
-			// 画面判定フラグを通常画面とする。
 			_isLayoutXLarge = false
 		}
 	}
