@@ -23,9 +23,9 @@ class MainActivity : AppCompatActivity() {
 
             // ライン表示
             val wm: WindowManager = getSystemService(Context.WINDOW_SERVICE) as WindowManager
-            //val disp = wm.getDefaultDisplay()
+            val display = wm.getDefaultDisplay()
             val size = Point()
-            //disp.getSize(size)
+            display.getSize(size)
 
             val startX = 200f
             val startY = 300f
