@@ -24,14 +24,10 @@ class Field {
         // val StatusBar = insets.top
         // val NavigationBar = insets.bottom
 
-        //四角形を表示
-        paint.style = Paint.Style.FILL
-        paint.color = Color.argb(255, 255, 0, 255)
         val _ScreenWidth = 1100
         val sqSize = (_ScreenWidth - 200)/10
         Log.i("Display","sqSize:$sqSize"
         )
-        canvas.drawRect(Rect(sqSize, sqSize, sqSize*2, sqSize*2), paint)
 
         val startX = FIELDSTARTX
         val startY = FIELDSTARTY

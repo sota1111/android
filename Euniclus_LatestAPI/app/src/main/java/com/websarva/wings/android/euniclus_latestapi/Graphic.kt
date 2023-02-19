@@ -14,7 +14,7 @@ class Graphic(context: Context): View(context) {
     }
 
     private fun drawBlock(canvas:Canvas){
-        val block = Block()
+        val block = Block(BlockTypeZ)
         block.draw(canvas)
     }
     private fun drawField(canvas: Canvas){
