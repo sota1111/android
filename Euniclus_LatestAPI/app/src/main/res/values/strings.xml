@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">Euniclus_LatestAPI</string>
+    <string name="app_name">tetris</string>
+    <string name="bt_under">下</string>
+    <string name="bt_right">➡</string>
+    <string name="bt_left">⬅</string>
+    <string name="bt_rot">回転</string>
 </resources>

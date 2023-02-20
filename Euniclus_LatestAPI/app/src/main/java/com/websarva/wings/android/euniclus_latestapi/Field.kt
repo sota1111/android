@@ -4,10 +4,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
-import android.graphics.Rect
 import android.util.Log
-import android.view.WindowInsets
-import android.view.WindowMetrics
 
 class Field {
     private var paint: Paint = Paint()
@@ -29,8 +26,8 @@ class Field {
         Log.i("Display","sqSize:$sqSize"
         )
 
-        val startX = FIELDSTARTX
-        val startY = FIELDSTARTY
+        val startX = FIELD_START_X
+        val startY = FIELD_START_Y
 
         val _field_height = 20
         val _field_width = 10
