@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:first_app2/result.dart';
 
 void main(){
   runApp(MyApp());
@@ -25,31 +26,44 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String? name;
+    DateTime? birthday;
+
     return SingleChildScrollView(
       child: Column(
         children:[
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: TextField(
+              onChanged: (newText){
+                name = newText;
+              },
               decoration: InputDecoration(
-                labelText: 'name',
-                hintText: 'name',
+                labelText: '名前',
+                hintText: '名前',
                 icon: Icon(Icons.account_circle)
               ),
             ),
           ),
           ElevatedButton(onPressed: (
-            ) {
-            showDatePicker(
+            ) async {
+            birthday = await showDatePicker(
               context: context,
               initialDate: DateTime(DateTime.now().year-10),
               firstDate: DateTime(DateTime.now().year-100),
               lastDate: DateTime(DateTime.now().year),);
           }, child: new Text('誕生日選択'),),
-          ElevatedButton(onPressed: (
-              ){print("ボタンを押しました");},
-              child: Text("生まれてから何日目？"),
-          )
+          ElevatedButton(onPressed: (){
+            if (name!=null && birthday != null) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) =>
+                    Result(name: name!, dayFromBirthday:DateTime.now().difference(birthday!).inDays)),
+              );
+              print(name);
+              print(DateTime.now().difference(birthday!).inDays);
+            }
+          }, child: Text("生まれてから何日目？"))
         ],
       ),
     );
