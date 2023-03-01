@@ -41,49 +41,79 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: Color.fromARGB(255,255,255,255),
       appBar: AppBar(
-        title: Text('App Name', style: TextStyle(fontSize: 30.0),),
+        title: Text('MyTetris', style: TextStyle(fontSize: 30.0),),
       ),
-      body: Container(
-        child:CustomPaint(
-          //painter: MyPainter(),
-          painter: LinePaint(),
-        ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children:[
+          CustomPaint(
+            // draw Line
+            painter: DrawLine(),
+          ),
+          CustomPaint(
+            // draw Rectangle
+            painter: DrawRectangle(),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              ElevatedButton(
+                  onPressed: (){print("PressButton");},
+                  child: Text("Left"),
+              ),
+              ElevatedButton(
+                onPressed: (){print("PressButton");},
+                child: Text("TurnAround"),
+              ),
+              ElevatedButton(
+                onPressed: (){print("PressButton");},
+                child: Text("Right"),
+              ),
+            ],
+          )
+        ]
       ),
     );
   }
 }
 
-class MyPainter extends CustomPainter{
+class DrawRectangle extends CustomPainter{
   @override
   void paint(Canvas canvas, Size size){
     Paint p = Paint();
     p.style = PaintingStyle.fill;
     p.color = Color.fromARGB(150,0,200,255);
-    Rect r = Rect.fromLTWH(50, 50, 150, 150);
+    Rect r = Rect.fromLTWH(-150, -305, 30, 30);
     canvas.drawRect(r, p);
 
     p.style = PaintingStyle.stroke;
     p.color = Color.fromARGB(150, 200, 0, 255);
     p.strokeWidth = 10.0;
-    r = Rect.fromLTWH(100.0, 100.0, 150.0, 150.0);
-    canvas.drawRect(r, p);
+    r = Rect.fromLTWH(100.0, 100.0, 150.0, 150.0);//左、上、幅、高さ
+    //canvas.drawRect(r, p);
   }
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) => true;
 }
 
-class LinePaint extends CustomPainter{
+class DrawLine extends CustomPainter{
   @override
   void paint(Canvas canvas, Size size){
     Paint p = Paint();
     p.style = PaintingStyle.stroke;
-    p.strokeWidth = 5.0;
-    p.color = Color.fromARGB(150, 0, 200, 255);
+    p.strokeWidth = 2.0;
+    p.color = Color.fromARGB(100, 0, 0, 0);
+    var basePosX = -150.0;
+    var basePosY = 10.0;
     for (var i = 0; i <= 10; i++){
-      Rect r = Rect.fromLTRB(
-        50.0 + 20 * i, 50.0,
-        50.0, 250.0 - 20 * i);
+      Rect r = Rect.fromLTRB(//左、上、右、下
+          basePosX+30*i, basePosY+0.0, basePosX+30*i, basePosY+600);
+      canvas.drawLine(r.topLeft, r.bottomRight, p);
+    }
+    for (var i = 0; i <= 20; i++){
+      Rect r = Rect.fromLTRB(//左、上、右、下
+          basePosX, basePosY+30*i, basePosX+300.0, basePosY+30*i);
       canvas.drawLine(r.topLeft, r.bottomRight, p);
     }
   }
