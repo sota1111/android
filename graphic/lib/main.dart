@@ -31,18 +31,21 @@ class MyHomePage extends StatefulWidget{
   }): super(key: key);
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _TetrisState createState() => _TetrisState();
 
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _TetrisState extends State<MyHomePage> {
+  static double _minoX = 0;
+  static double _minoY = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255,255,255,255),
-      appBar: AppBar(
-        title: Text('MyTetris', style: TextStyle(fontSize: 30.0),),
-      ),
+      //appBar: AppBar(
+        //title: Text('MyTetris', style: TextStyle(fontSize: 30.0),),
+      //),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children:[
@@ -51,22 +54,42 @@ class _MyHomePageState extends State<MyHomePage> {
             painter: DrawLine(),
           ),
           CustomPaint(
-            // draw Rectangle
+            // draw Line
             painter: DrawRectangle(),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               ElevatedButton(
-                  onPressed: (){print("PressButton");},
+                  onPressed: (){
+                    _minoX -= 1;
+                    print('${_minoX}');
+                    },
                   child: Text("Left"),
               ),
-              ElevatedButton(
-                onPressed: (){print("PressButton");},
-                child: Text("TurnAround"),
+              Column(
+                children: [
+                  ElevatedButton(
+                    onPressed: (){
+                      _minoY += 1;
+                      print('${_minoY}');
+                      },
+                    child: Text("TurnAround"),
+                  ),
+                  ElevatedButton(
+                    onPressed: (){
+                      _minoY -= 1;
+                      print('${_minoY}');
+                    },
+                    child: Text("Down"),
+                  ),
+                ],
               ),
               ElevatedButton(
-                onPressed: (){print("PressButton");},
+                onPressed: (){
+                  _minoX += 1;
+                  print('${_minoX}');
+                  },
                 child: Text("Right"),
               ),
             ],
@@ -83,14 +106,8 @@ class DrawRectangle extends CustomPainter{
     Paint p = Paint();
     p.style = PaintingStyle.fill;
     p.color = Color.fromARGB(150,0,200,255);
-    Rect r = Rect.fromLTWH(-150, -305, 30, 30);
+    Rect r = Rect.fromLTWH(-150.0+_TetrisState._minoX*30.0, -282-_TetrisState._minoY*30.0, 30, 30);
     canvas.drawRect(r, p);
-
-    p.style = PaintingStyle.stroke;
-    p.color = Color.fromARGB(150, 200, 0, 255);
-    p.strokeWidth = 10.0;
-    r = Rect.fromLTWH(100.0, 100.0, 150.0, 150.0);//左、上、幅、高さ
-    //canvas.drawRect(r, p);
   }
 
   @override
@@ -105,7 +122,7 @@ class DrawLine extends CustomPainter{
     p.strokeWidth = 2.0;
     p.color = Color.fromARGB(100, 0, 0, 0);
     var basePosX = -150.0;
-    var basePosY = 10.0;
+    var basePosY = 50.0;
     for (var i = 0; i <= 10; i++){
       Rect r = Rect.fromLTRB(//左、上、右、下
           basePosX+30*i, basePosY+0.0, basePosX+30*i, basePosY+600);
@@ -116,6 +133,8 @@ class DrawLine extends CustomPainter{
           basePosX, basePosY+30*i, basePosX+300.0, basePosY+30*i);
       canvas.drawLine(r.topLeft, r.bottomRight, p);
     }
+
+
   }
 
   @override
