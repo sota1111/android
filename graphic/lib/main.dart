@@ -45,7 +45,8 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Container(
         child:CustomPaint(
-          painter: MyPainter(),
+          //painter: MyPainter(),
+          painter: LinePaint(),
         ),
       ),
     );
@@ -66,6 +67,25 @@ class MyPainter extends CustomPainter{
     p.strokeWidth = 10.0;
     r = Rect.fromLTWH(100.0, 100.0, 150.0, 150.0);
     canvas.drawRect(r, p);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) => true;
+}
+
+class LinePaint extends CustomPainter{
+  @override
+  void paint(Canvas canvas, Size size){
+    Paint p = Paint();
+    p.style = PaintingStyle.stroke;
+    p.strokeWidth = 5.0;
+    p.color = Color.fromARGB(150, 0, 200, 255);
+    for (var i = 0; i <= 10; i++){
+      Rect r = Rect.fromLTRB(
+        50.0 + 20 * i, 50.0,
+        50.0, 250.0 - 20 * i);
+      canvas.drawLine(r.topLeft, r.bottomRight, p);
+    }
   }
 
   @override
