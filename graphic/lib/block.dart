@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 enum BlockMovement {
   uP,
@@ -17,5 +18,5 @@ class Block {
   Block(this.x, this.y, this.color,_IBlock){
     _IBlock = [[0,1,0,0],[0,1,0,0],[0,1,0,0],[0,1,0,0]];
   }
-
+//動かせるようになったら、Blockを継承で作る。
 }
