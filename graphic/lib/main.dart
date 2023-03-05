@@ -147,3 +147,33 @@ class DrawLine extends CustomPainter{
   @override
   bool shouldRepaint(CustomPainter oldDelegate) => true;
 }
+
+
+
+
+class MyWidget extends ConsumerWidget{
+  @override
+  Widget build(BuildContext context, WidgetRef ref){
+
+    //final Provider<String> provider = Provider((ref){
+    //  return 'Hello';
+    //});
+
+    //final String data = ref.watch(provider);
+    final data = 'test';
+    return Scaffold(
+      body: Center(
+        child: Text(data),
+      ),
+    );
+  }
+}
+class testClass {
+    //Providerを使うことを宣言
+    final provider = Provider((ref){
+      return 'Hello';
+    });
+    //どの使い方にするかを選択
+    final container = ProviderContainer();
+    late final hello = container.read(provider);
+}
