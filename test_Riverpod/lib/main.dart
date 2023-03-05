@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final helloWorldProvider = Provider((ref) => 'Hello World');
+final counterProvider = Provider((ref) => 'Hello World');
 
 void main(){
   runApp(
@@ -16,13 +16,13 @@ void main(){
 
 class MyApp extends ConsumerWidget{
   @override
-  Widget build(BuildContext context, ScopedReader watch){
+  Widget build(BuildContext context, WidgetRef ref){
     // watch()を使いデータを受け取る
     // 値は.stateに格納
-    final count = watch(countProvider).state;
+    final count = ref.watch(counterProvider);
     return Scaffold(
       body: Center(
-        child:Text('count is $count'),
+        child:Text('count changed $count'),
       ),
     );
   }
