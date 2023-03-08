@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../main.dart';
+import '../ViewModel/BlockViewModel.dart';
 
 final counterProvider = StateNotifierProvider<CounterNotifier, int>(
       (ref) => CounterNotifier(),
 );
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: Home(),
+    );
+  }
+}
 class Home extends ConsumerWidget{
   const Home({Key? key}) : super(key: key);
 
