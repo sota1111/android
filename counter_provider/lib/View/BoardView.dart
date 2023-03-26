@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../main.dart';
 import '../ViewModel/BlockViewModel.dart';
+import '../ViewModel/BoardView.dart';
 
 final counterProvider = StateNotifierProvider<CounterNotifier, int>(
       (ref) => CounterNotifier(),
@@ -23,6 +24,7 @@ class Home extends ConsumerWidget{
   Widget build(BuildContext context, WidgetRef ref){
     final counterState = ref.watch(counterProvider);
     final counterNotifier = ref.watch(counterProvider.notifier);
+    final List<String> imageList =["a","b","c","d","e","f"];
 
     return Scaffold(
         appBar: AppBar(
@@ -34,6 +36,7 @@ class Home extends ConsumerWidget{
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children:[
+
                   Text(
                     counterState.toString(),
                     style: const TextStyle(fontSize: 80),
@@ -41,6 +44,10 @@ class Home extends ConsumerWidget{
                   Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        CustomPaint(
+                          // draw Line
+                          painter: DrawLine(),
+                        ),
                         IconButton(
                             onPressed: (){
                               counterNotifier.plus();
