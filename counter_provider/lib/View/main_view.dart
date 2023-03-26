@@ -35,33 +35,45 @@ class Home extends ConsumerWidget{
         body: SizedBox(
             width: double.infinity,
             child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children:[
-                  Row(
+                  Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         CustomPaint(
                           // draw Line
                           painter: DrawLine(),
                         ),
-                        IconButton(
-                            onPressed: (){
-                              counterNotifier.plus();
-                            },
-                            icon: const Icon(Icons.add),
-                            iconSize: 30
-                        ),
-                        IconButton(
-                            onPressed: (){
-                              counterNotifier.minus();
-                            },
-                            icon: const Icon(Icons.remove),
-                            iconSize: 30
-                        ),
-                        Text(
-                          counterState.toString(),
-                          style: const TextStyle(fontSize: 80),
+                        Container(
+                          alignment: Alignment.bottomCenter,
+                          height: 780,
+                          width: 200,
+                          color: Colors.white10,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children:[
+                               IconButton(
+                                  onPressed: (){
+                                    counterNotifier.plus();
+                                  },
+                                  icon: const Icon(Icons.add),
+                                  iconSize: 30
+                              ),
+                              IconButton(
+                                  alignment: Alignment.bottomCenter,
+                                  onPressed: (){
+                                    counterNotifier.minus();
+                                  },
+                                  icon: const Icon(Icons.remove),
+                                  iconSize: 30
+                              ),
+                              Text(
+                                counterState.toString(),
+                                style: const TextStyle(fontSize: 80),
+                              ),
+                            ]
+                          ),
                         ),
                       ]
                   )
