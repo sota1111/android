@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../main.dart';
-import '../View/BoardView.dart';
+import '../View/main_view.dart';
 
 
 class CounterNotifier extends StateNotifier<int>{

@@ -1,72 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../main.dart';
-import '../ViewModel/BlockViewModel.dart';
-import '../ViewModel/BoardView.dart';
 
-final counterProvider = StateNotifierProvider<CounterNotifier, int>(
-      (ref) => CounterNotifier(),
-);
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class DrawLine extends CustomPainter{
+  @override
+  void paint(Canvas canvas, Size size){
+    Paint p = Paint();
+    p.style = PaintingStyle.stroke;
+    p.strokeWidth = 2.0;
+    p.color = Color.fromARGB(100, 0, 0, 0);
+    var basePosX = -150.0;
+    var basePosY = 50.0;
+    for (var i = 0; i <= 10; i++){
+      Rect r = Rect.fromLTRB(//左、上、右、下
+          basePosX+30*i, basePosY+0.0, basePosX+30*i, basePosY+600);
+      canvas.drawLine(r.topLeft, r.bottomRight, p);
+    }
+    for (var i = 0; i <= 20; i++){
+      Rect r = Rect.fromLTRB(//左、上、右、下
+          basePosX, basePosY+30*i, basePosX+300.0, basePosY+30*i);
+      canvas.drawLine(r.topLeft, r.bottomRight, p);
+    }
+  }
 
   @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Home(),
-    );
-  }
-}
-class Home extends ConsumerWidget{
-  const Home({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref){
-    final counterState = ref.watch(counterProvider);
-    final counterNotifier = ref.watch(counterProvider.notifier);
-    final List<String> imageList =["a","b","c","d","e","f"];
-
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text('StateNotifierProvider'),
-        ),
-        body: SizedBox(
-            width: double.infinity,
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children:[
-
-                  Text(
-                    counterState.toString(),
-                    style: const TextStyle(fontSize: 80),
-                  ),
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CustomPaint(
-                          // draw Line
-                          painter: DrawLine(),
-                        ),
-                        IconButton(
-                            onPressed: (){
-                              counterNotifier.plus();
-                            },
-                            icon: const Icon(Icons.add),
-                            iconSize: 30
-                        ),
-                        IconButton(
-                            onPressed: (){
-                              counterNotifier.minus();
-                            },
-                            icon: const Icon(Icons.remove),
-                            iconSize: 30
-                        ),
-                      ]
-                  )
-                ]
-            )
-        )
-    );
-  }
+  bool shouldRepaint(CustomPainter oldDelegate) => true;
 }
