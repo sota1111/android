@@ -16,3 +16,16 @@ final counterProvider = StateNotifierProvider<CounterNotifier, int>(
 );
 
 
+class DrawRectangle extends CustomPainter{
+  @override
+  void paint(Canvas canvas, Size size){
+    Paint p = Paint();
+    p.style = PaintingStyle.fill;
+    p.color = Color.fromARGB(150,0,200,255);
+    Rect r = Rect.fromLTWH(0.0, 0.0, 30, 30);
+    canvas.drawRect(r, p);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) => true;
+}

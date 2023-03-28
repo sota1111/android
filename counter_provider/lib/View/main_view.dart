@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../ViewModel/BlockViewModel.dart';
@@ -44,6 +43,10 @@ class Home extends ConsumerWidget{
                         CustomPaint(
                           // draw Line
                           painter: DrawLine(),
+                        ),
+                        CustomPaint(
+                          // draw Line
+                          painter: DrawRectangle(),
                         ),
                         Container(
                           alignment: Alignment.bottomCenter,
